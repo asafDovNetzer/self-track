@@ -51,7 +51,7 @@ export const setExpandObject = function (monitor = false) {
   if (!monitor) {
     if (state.currentSubject.trackers.length === 0) {
       //add another turnery for rater.length when is//
-      console.log(`there are no monitors 34`);
+      console.log(`there are no monitors 404`);
     } else {
       state.currentSubject.trackers[0].isSelected = true;
       state.currentSubject.expandObject = state.currentSubject.trackers[0];
