@@ -1,0 +1,21 @@
+.copyrights {
+  height: 80px;
+  background-color: $text-color-1;
+  padding-left: 20px;
+  padding-top: 10px;
+  .copyrights_p {
+    float: left;
+    // display: inline;
+    width: 400px;
+    margin-left: 20px;
+    margin-top: 10px;
+    font-size: 80%;
+  }
+  .hash {
+    float: left;
+    margin-top: 5px;
+    margin-right: 10px;
+    color: rgb(255, 255, 255);
+    // background-color: rgb(133, 33, 33);
+  }
+}

@@ -1,0 +1,81 @@
+.app_header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 4;
+
+  .header_container {
+    width: 1140px;
+    height: 70px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 80px 960px 100px;
+    background-color: $some-2;
+    // border-bottom-left-radius: 20px;
+    // border-bottom-right-radius: 20px;
+  }
+
+  .logo {
+    // float: left;
+    padding-top: 2px;
+    padding-left: 10px;
+    color: salmon;
+  }
+
+  .title {
+    float: left;
+    h1 {
+      //   display: inline-block;
+      padding-left: 20px;
+      padding-top: 20px;
+      color: $text-color-1;
+      color: seashell;
+      //   font-weight: 400;
+    }
+  }
+  .btn {
+    float: right;
+    background-color: inherit;
+    border: none;
+    width: 230px;
+    height: 100%;
+    padding-top: 10px;
+    transition: background-color 0.3s;
+
+    h1 {
+      text-align: center;
+      color: rgb(218, 216, 216);
+      //   color: $text-color-1;
+    }
+  }
+
+  .data_nav {
+    width: 160px;
+  }
+
+  .user {
+    background-color: inherit;
+    border: none;
+    color: $some-4;
+    // border-bottom-right-radius: 20px;
+  }
+
+  .password {
+    float: right;
+    outline: none;
+    margin-right: 16px;
+    border: none;
+    margin-top: 14px;
+    border-radius: 20px;
+    width: 120px;
+    height: 40px;
+    padding-left: 22px;
+    font-size: 120%;
+    letter-spacing: 6px;
+  }
+
+  button:hover {
+    background-color: rgb(230, 111, 98);
+    background-color: $some-3;
+  }
+}

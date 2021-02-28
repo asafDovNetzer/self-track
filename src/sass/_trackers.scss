@@ -1,0 +1,225 @@
+.trackers {
+  // background-image: linear-gradient(rgb(29, 29, 29), $text-color-1);
+  padding: 10px;
+  height: 100vh;
+
+  .trackers_window {
+    height: 100vh;
+  }
+  .trackers_container_overlay {
+    background-image: url("../img/shapelined-_JBKdviweXI-unsplash.jpg");
+    background-size: 1120px;
+    background-position: left;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .trackers_container {
+    background-color: rgba(90, 147, 194, 0.128);
+    width: 100%;
+    height: calc(100vh - 140px);
+    border-radius: inherit;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 6px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto-fill, 120px);
+    gap: 6px;
+    border: none;
+    opacity: 0.9;
+    transition: transform 0.4s ease-out;
+    transform: scaleY(0);
+    transform-origin: top;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+  .trackers_container::-webkit-scrollbar {
+    display: none;
+  }
+  //   transition: height 3s;
+
+  .full_container {
+    transform: scaleY(1);
+  }
+}
+.tracker {
+  //   opacity: 0;
+  height: 120px;
+  min-width: 350px;
+  background-color: $text-color-1;
+  border-radius: 10px;
+  border: 5px solid;
+  border-color: $text-color-1;
+  display: grid;
+  text-align: center;
+
+  transition: border-color 0.6s, opacity 1s;
+  //   transition: opacity 1s;
+
+  h1 {
+    font-size: 100%;
+    margin: 0;
+  }
+  .main_btns {
+    height: 100%;
+    overflow: auto;
+    .btn {
+      border: none;
+      border-radius: 50px;
+      opacity: 0.9;
+      transition: opacity 0.5s;
+    }
+    .btn:hover {
+      opacity: 1;
+    }
+  }
+  .btns {
+    .btn {
+      width: 70px;
+      height: 16px;
+      margin-right: 4px;
+      margin-bottom: auto;
+      margin-top: auto;
+      border: none;
+      background-color: $some-1;
+      border-radius: 10px;
+      opacity: 0.7;
+      transition: opacity 0.4s;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    .btn:active {
+      transform: scaleX(0.95);
+    }
+  }
+}
+.tracker:hover,
+.selected {
+  border-color: $some-2;
+}
+
+.stopwatch {
+  //   max-width: 400px;
+  grid-template-rows: 1fr 3fr;
+
+  .tracker_header {
+    text-align: center;
+    padding-left: 55px;
+  }
+
+  .tracker_body {
+    display: grid;
+    grid-template-columns: 80px 2fr;
+
+    .main_btns {
+      // padding-top: 2px;
+
+      .left_btn {
+        width: 60px;
+        height: 60px;
+        background-color: $text-color-1;
+        border: 3px solid $play;
+      }
+      .active {
+        background-color: $text-color-1;
+        border-color: salmon;
+        .btn_icon {
+          color: salmon;
+        }
+      }
+
+      .btn_icon {
+        color: $play;
+        opacity: 1;
+        transition: transform 0.2s;
+      }
+
+      .btn_icon:hover {
+        transform: scale(1.04);
+      }
+      .btn_icon:active {
+        transform: scale(1);
+      }
+    }
+
+    .rest {
+      height: 100%;
+      overflow: auto;
+      display: grid;
+      grid-template-rows: 2.5fr 1.5fr;
+
+      .time {
+        font-size: 43px;
+        color: $some-2;
+        letter-spacing: 10px;
+      }
+    }
+  }
+}
+
+.counter {
+  grid-template-rows: 1fr 3fr;
+  .tracker_body {
+    display: grid;
+    grid-template-columns: 80px minmax(110px, 2fr) 80px;
+    .count {
+      background-color: seashell;
+      border-radius: 10px;
+      min-width: 80px;
+      max-width: 100px;
+      margin: 0 auto;
+      h1 {
+        font-size: 200%;
+        font-weight: 400;
+        color: $text-color-1;
+      }
+    }
+    .main_btns {
+      // border: 4px solid $some-2;
+      // background-color: $text-color-1;
+
+      padding-top: 0px;
+
+      .btn {
+        width: 80px;
+        height: 80px;
+        background-color: $text-color-1;
+        border-color: $text-color-1;
+      }
+
+      .btn_icon {
+        color: $some-1;
+        transition: transform 0.2s;
+      }
+
+      .btn_icon:hover {
+        transform: scale(1.08);
+      }
+      .btn_icon:active {
+        transform: scale(1);
+      }
+    }
+  }
+  .mid {
+    height: 100%;
+    overflow: auto;
+    padding-top: 20px;
+    text-align: center;
+
+    .count {
+      background-color: rgb(255, 245, 238);
+      border-radius: 10px;
+      min-width: 80px;
+      max-width: 100px;
+      margin: 0 auto;
+      // z-index: -1;
+      h1 {
+        font-size: 200%;
+        font-weight: 400;
+        color: $text-color-1;
+      }
+    }
+  }
+}

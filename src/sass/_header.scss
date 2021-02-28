@@ -1,0 +1,80 @@
+.before_log-in {
+  height: 360px;
+  z-index: 99999;
+  background-color: black;
+  // background-image: url("../img/murray-campbell-B_TdfGFuGwA-unsplash.jpg");
+  background-size: 800px;
+  background-repeat: no-repeat;
+  background-position: right;
+
+  .img_overlay {
+    background-image: linear-gradient(rgb(0, 0, 0), rgba(85, 85, 85, 0.26));
+    height: inherit;
+    opacity: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .header_content {
+    // padding: 40px 40px;
+    margin: auto auto;
+    
+  }
+
+  .user_panel {
+    margin: auto auto;
+    .btn {
+      //   margin-top: 20px;
+      margin-right: 40px;
+      //   font-size: 14px;
+      font-weight: 300;
+      height: 30px;
+      width: 100px;
+      border-radius: 20px;
+      border: none;
+      transition: opacity 0.2s;
+      letter-spacing: 3px;
+      //   color: $some-2;
+    }
+    .btn--signin {
+      background-color: white;
+      opacity: 0.5;
+    }
+    .btn--signin:hover {
+      opacity: 0.8;
+    }
+
+    .btn--signup {
+      background-color: $some-4;
+      color: rgba(255, 255, 255, 0.945);
+      opacity: 0.8;
+    }
+    .btn--signup:hover {
+      opacity: 1;
+    }
+  }
+}
+
+h1,
+h2 {
+  margin: 0 0 0 0;
+}
+
+h1 {
+  color: rgb(214, 222, 228);
+  font-weight: 300;
+  margin-bottom: 10px;
+  letter-spacing: 5px;
+}
+
+h2 {
+  color: rgb(252, 249, 249);
+  font-weight: 300;
+  //   font-size: 20px;
+}
+
+p {
+  color: ivory;
+  line-height: 30px;
+  word-spacing: 2px;
+}

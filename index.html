@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link rel="stylesheet" /> -->
+    <!-- <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon" /> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="src/sass/style.css" />
+    <script defer src="src/js/controller.js"></script>
+
+    <title>self-track</title>
+  </head>
+
+  <body>
+    <div class="app_header">
+      <div class="header_container">
+
+        <div class="logo">
+          <svg
+          class="btn_icon"
+          width="64"
+          height="64"
+          fill="currentColor"
+          >
+          <use
+          href="./src/bootstrap-icons/bootstrap-icons.svg#bar-chart-fill
+          "
+          />
+        </svg>
+      </div>
+      <div class="app_navigator">
+        <input class="password" type="text" placeholder="PIN">
+      </div>
+      <button class="user">
+        <svg
+        class="btn_icon"
+        width="40"
+        height="40"
+        fill="currentColor"
+        >
+        <use
+        href="./src/bootstrap-icons/bootstrap-icons.svg#person-circle
+        "
+        />
+      </svg>
+    </button>
+  </div>
+    </div>
+    <div class="container">
+      <div class="overview">
+        <div class="top_block">
+          <h1>Welcome Back, Asaf</h1>
+          <h2>Last time online:</h2>
+          <h2>27 / 02 / 21</h2>
+        </div>
+        <div class="block block_1">
+          <div class="block_content">
+            <h1>STOPWATCHES</h1>
+          </div>
+        </div>
+        <div class="block block_2">
+          <div class="block_content">
+            <h1>COUNTERS</h1>
+          </div>
+         </div>
+        <div class="block block_3">
+          <div class="block_content">
+            <h1>RATERS</h1>
+          </div>
+        </div>
+        
+
+
+      </div>
+      <div class="landing-page-body"></div>
+      <div class="copyrights">
+        <div class="copyrights_p">
+          <p>&copy; All copyrights belong to Asaf Dov Netzer</p>
+        </div>
+      </div>
+    </div>
+    <div class="model_window hidden">
+      <div class="model_content">
+        <div class="header">
+           <h1>create a new rater</h1>
+        </div>
+        <div class="content">
+          <div class="page-0" data-page="0">
+            <div class="first_column">
+              <label>Title</label>
+              <input
+                class="title"
+                value=""
+                name="title"
+                type="text"
+                placeholder="Should be between 4-10 characters"
+              />
+              <p></p>
+
+              <label>Description</label>
+              <textarea
+                class="description_input"
+                name="description"
+                cols="40"
+                rows="5"
+                placeholder="e.g. tracking how much TV i watch"
+              ></textarea>
+            </div>
+            <div class="second_column_3">
+              <label>Rating Description</label>
+              <p>
+                Give a short description to each of the five rating options (unnecessary).
+              </p>
+              <div class="descriptions">
+                
+                  <input value="" type="text" placeholder="e.g very difficult..">
+                  <div>
+
+                    <svg
+                    class="icon"
+                    width="16"
+                    height="16"
+        fill="currentColor"
+        >
+        <use
+        href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+        "
+        />
+      </svg>
+      <svg
+      class="icon"
+      width="16"
+      height="16"
+      fill="currentColor"
+      >
+      <use
+      href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+      "
+      />
+    </svg>
+    <svg
+    class="icon"
+    width="16"
+    height="16"
+    fill="currentColor"
+    >
+    <use
+    href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+    "
+    />
+  </svg>
+  <svg
+  class="icon"
+  width="16"
+  height="16"
+  fill="currentColor"
+  >
+  <use
+  href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+  "
+  />
+</svg>
+<svg
+class="icon"
+width="16"
+height="16"
+fill="currentColor"
+>
+<use
+href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+"
+/>
+</svg>
+</div>
+                  <input value="" type="text" placeholder="e.g somewhat difficult..">
+                  <div>
+
+                    <svg
+                    class="icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    >
+                    <use
+                    href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+        "
+        />
+      </svg>
+      <svg
+      class="icon"
+        width="16"
+        height="16"
+        fill="currentColor"
+        >
+        <use
+        href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+        "
+        />
+      </svg>
+      <svg
+        class="icon"
+        width="16"
+        height="16"
+        fill="currentColor"
+        >
+        <use
+        href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+        "
+        />
+      </svg>
+      <svg
+      class="icon"
+      width="16"
+      height="16"
+      fill="currentColor"
+      >
+      <use
+      href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+      "
+      />
+    </svg>
+  </div>
+          
+                  <input value="" type="text" placeholder="e.g moderate">
+                  <div>
+
+                    <svg
+                    class="icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    >
+                    <use
+                    href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+                    "
+                    />
+                  </svg>
+                  <svg
+                  class="icon"
+        width="16"
+        height="16"
+        fill="currentColor"
+        >
+        <use
+        href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+        "
+        />
+      </svg>
+      <svg
+      class="icon"
+        width="16"
+        height="16"
+        fill="currentColor"
+        >
+        <use
+        href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+        "
+        />
+      </svg>
+    </div>
+      
+                  <input value="" type="text" placeholder="e.g pretty easy..">
+                  <div>
+
+                    <svg
+                    class="icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    >
+                    <use
+                    href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+        "
+        />
+      </svg>
+      <svg
+      class="icon"
+        width="16"
+        height="16"
+        fill="currentColor"
+        >
+        <use
+        href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+        "
+        />
+      </svg>
+    </div>
+            
+                  <input value="" type="text" placeholder="e.g very easy..">
+                  <svg
+        class="icon"
+        width="16"
+        height="16"
+        fill="currentColor"
+        >
+        <use
+        href="./src/bootstrap-icons/bootstrap-icons.svg#star-fill
+        "
+        />
+      </svg>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="form_nav">
+          <button class="btn left active">back</button>
+          <div class="dots_container">
+            <button class="dot" data-id="0">
+              <svg class="dot_icon" width="10" height="10" fill="currentColor">
+                <use
+                  href="./src/bootstrap-icons/bootstrap-icons.svg#circle-fill"
+                />
+              </svg>
+            </button>
+            <button class="dot" data-id="1">
+              <svg class="dot_icon" width="10" height="10" fill="currentColor">
+                <use
+                  href="./src/bootstrap-icons/bootstrap-icons.svg#circle-fill"
+                />
+              </svg>
+            </button>
+            <button class="dot" data-id="2">
+              <svg class="dot_icon" width="10" height="10" fill="currentColor">
+                <use
+                  href="./src/bootstrap-icons/bootstrap-icons.svg#circle-fill"
+                />
+              </svg>
+            </button>
+          </div>
+          <button class="btn right active">next</button>
+        </nav>
+      </div>
+    </div>
+    <div class="overlay hidden"><div>
+  </body>
+</html>
