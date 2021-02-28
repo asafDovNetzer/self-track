@@ -20,6 +20,8 @@ class TrackersView extends View {
       const btnEl = e.target.closest(`.btn`);
       const btn = btnEl ? btnEl.classList[1] : false;
 
+      if (!tracker) return;
+
       handler(tracker.id, btn);
     });
   }

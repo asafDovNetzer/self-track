@@ -20,6 +20,8 @@ class RatersView extends View {
       const btnEl = e.target.closest(`.star`);
       const btn = btnEl ? btnEl.classList[1] : false;
 
+      if (!rater) return;
+
       handler(rater.id, btn);
     });
   }

@@ -7,36 +7,7 @@ import {
 
 export const state = {
   user: `asafnetzer`,
-  subjects: [
-    {
-      name: `Asaf Dov Netzer`,
-      type: `privat`,
-      trackers: [],
-      raters: [],
-      userPrefrences: {
-        sortBy: [
-          { type: `auto`, selected: true },
-          { type: `use`, selected: false },
-          { type: `date`, selected: false },
-          { type: `type`, selected: false },
-        ],
-      },
-      expandObject: {
-        type: undefined,
-        name: undefined,
-        description: undefined,
-        memoryObject: {
-          fullDate: undefined,
-          entries: [],
-          output: undefined,
-        },
-      },
-      lastLogIn: {
-        timestamp: 0,
-        fullDate: ``,
-      },
-    },
-  ],
+  subjects: [],
   currentSubject: ``,
   license: `family`,
   formObject: {},
@@ -51,7 +22,13 @@ export const setExpandObject = function (monitor = false) {
   if (!monitor) {
     if (state.currentSubject.trackers.length === 0) {
       //add another turnery for rater.length when is//
-      console.log(`there are no monitors 404`);
+      // console.log(`there are no monitors 404`);
+      if (state.currentSubject.raters.length === 0) {
+        console.log(`no trackers or raters 1`);
+      } else {
+        state.currentSubject.raters[0].isSelected = true;
+        state.currentSubject.expandObject = state.currentSubject.raters[0];
+      }
     } else {
       state.currentSubject.trackers[0].isSelected = true;
       state.currentSubject.expandObject = state.currentSubject.trackers[0];
@@ -68,6 +45,7 @@ export const deleteMonitor = function () {
     state.currentSubject.trackers = state.currentSubject.trackers.filter(
       (tracker) => tracker.id !== state.currentSubject.expandObject.id
     );
+
   if (state.currentSubject.expandObject.type === `rater`)
     state.currentSubject.raters = state.currentSubject.raters.filter(
       (rater) => rater.id !== state.currentSubject.expandObject.id
@@ -77,7 +55,7 @@ export const deleteMonitor = function () {
   setExpandObject();
 };
 
-export const enterSubject = function (number) {
+export const enterSubject = function (number = 0) {
   state.currentSubject = state.subjects[number];
   // fixLocalStorage();
 };
@@ -539,12 +517,47 @@ export const memoryCheck = function () {
 };
 
 const setLocalStorage = function () {
-  localStorage.setItem(`USER`, JSON.stringify(state.subjects));
+  // localStorage.setItem(`USER`, JSON.stringify(state.subjects));
+  localStorage.setItem(`USER2`, JSON.stringify(state.subjects));
 };
 
 export const getLocalStorage = function () {
-  const storage = localStorage.getItem(`USER`);
+  // const storage = localStorage.getItem(`USER`);
+  const storage = localStorage.getItem(`USER2`);
   if (storage) state.subjects = JSON.parse(storage);
+  if (!storage) createNewSubject();
+};
+
+const createNewSubject = function () {
+  state.subjects.push({
+    name: `Asaf Dov Netzer`,
+    type: `privat`,
+    trackers: [],
+    raters: [],
+    userPrefrences: {
+      sortBy: [
+        { type: `auto`, selected: true },
+        { type: `use`, selected: false },
+        { type: `date`, selected: false },
+        { type: `type`, selected: false },
+      ],
+      hourOfReset: 2,
+    },
+    expandObject: {
+      type: undefined,
+      name: undefined,
+      description: undefined,
+      memoryObject: {
+        fullDate: undefined,
+        entries: [],
+        output: undefined,
+      },
+    },
+    lastLogIn: {
+      timestamp: 0,
+      fullDate: ``,
+    },
+  });
 };
 
 export const setDate = function () {
@@ -559,38 +572,33 @@ export const setDate = function () {
 //fixLocalStorage = run once with set local storage at the end and then disable
 
 const fixLocalStorage = function () {
-  state.currentSubject.raters.forEach((rater) => {
-    rater.memory[state.now.year][state.now.month][state.now.day].info = {
-      fullDate: getDateObject(new Date(Date.now())),
-      entries: [],
-      output: {
-        number: 0,
-        description: undefined,
-      },
-    };
-  });
-
-  setLocalStorage();
-  console.log(state.currentSubject);
-};
-
-const clearTracker = function (tracker) {
-  console.log(`cleartracker`);
-
-  //   tracker.todaysEntries = [];
-  tracker.output = {
-    inSeconds: 0,
-    string: secondsToTime(0),
+  state.currentSubject.userPrefrences = {
+    sortBy: [
+      { type: `auto`, selected: true },
+      { type: `use`, selected: false },
+      { type: `date`, selected: false },
+      { type: `type`, selected: false },
+    ],
+    hourOfReset: 2,
   };
-  tracker.accum = 0;
-  tracker.isRunning = false;
 
   setLocalStorage();
+  // console.log(state.currentSubject);
 };
-const clearTrackerMemory = function (tracker) {
-  tracker.memory = [];
-  setLocalStorage();
-};
+
+// const clearTracker = function (tracker) {
+//   console.log(`cleartracker`);
+
+//   //   tracker.todaysEntries = [];
+//   tracker.output = {
+//     inSeconds: 0,
+//     string: secondsToTime(0),
+//   };
+//   tracker.accum = 0;
+//   tracker.isRunning = false;
+
+//   setLocalStorage();
+// };
 
 // const secondsToTime = function (seconds) {
 //   const hrs = String(Math.trunc(seconds / 3600));

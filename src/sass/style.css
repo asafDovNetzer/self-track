@@ -533,7 +533,7 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 10px;
-  height: 20px; }
+  height: 250px; }
   .page-0 .first_column {
     display: grid;
     grid-template-rows: 30px 30px 2fr;

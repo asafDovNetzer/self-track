@@ -39,6 +39,7 @@ const controlRater = function (id, btn) {
 
 const everySecond = function () {
   TrackersView.updateTime();
+  if (!model.state.currentSubject.expandObject.type) return;
   ExpandView.updateTime();
 };
 
@@ -178,7 +179,8 @@ const controlExpandSelector = function (value, classList) {
 
 const init = function () {
   model.getLocalStorage();
-  model.enterSubject(0);
+  console.log(model.state);
+  model.enterSubject();
 
   HomeView.render();
   setParentElements();
@@ -206,6 +208,7 @@ const init = function () {
   FormView.addHandlerFormBtns(controlFormButton);
 
   refreshDataView();
+  ExpandView.addHandlerExpandBtns(controlExpandView);
 
   TrackersSelectorView.render(model.state.currentSubject.userPrefrences);
   TrackersSelectorView.addHandlerCreateBtns(controlTrackersSelector);
@@ -216,7 +219,7 @@ const init = function () {
 };
 
 signinbtn.addEventListener(`click`, function (e) {
-  console.log(pin.value);
+  // console.log(pin.value);
   if (pin.value === `6546`) init();
 });
 
@@ -234,6 +237,5 @@ const refreshDataView = function () {
   ExpandView.render(model.state.currentSubject.expandObject);
   EntriesView.selectParentElement();
   EntriesView.render(model.state.currentSubject.expandObject.memory);
-  ExpandView.addHandlerExpandBtns(controlExpandView);
   ExpandView.addHandlerToggle(controlExpandSelector);
 };
