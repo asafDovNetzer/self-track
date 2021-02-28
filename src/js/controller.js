@@ -22,10 +22,7 @@ const pin = document.querySelector(`.password`);
 const updateOnClick = function (id, btn) {
   model.trackerIdentifier(id, btn);
   TrackersView.updateUI(model.state.currentSubject.trackers);
-  ExpandView.render(model.state.currentSubject.expandObject);
-  ExpandView.addHandlerToggle(controlExpandSelector);
-  EntriesView.selectParentElement();
-  EntriesView.render(model.state.currentSubject.expandObject.memory);
+  refreshDataView();
 
   if (!btn) scrollToView(`.data`);
   // console.log(model.state.currentSubject);
@@ -34,10 +31,7 @@ const updateOnClick = function (id, btn) {
 const controlRater = function (id, btn) {
   model.raterIdentifier(id, btn);
   RatersView.updateUI(model.state.currentSubject.raters);
-  ExpandView.render(model.state.currentSubject.expandObject);
-  ExpandView.addHandlerToggle(controlExpandSelector);
-  EntriesView.selectParentElement();
-  EntriesView.render(model.state.currentSubject.expandObject.memory);
+  refreshDataView();
   console.log(model.state.currentSubject.raters);
 
   if (!btn) scrollToView(`.data`);
@@ -46,7 +40,6 @@ const controlRater = function (id, btn) {
 const everySecond = function () {
   TrackersView.updateTime();
   ExpandView.updateTime();
-  // ExpandView.updateUI(model.state.currentSubject.expandObject);
 };
 
 const controlExpandView = function (btn) {
@@ -55,10 +48,7 @@ const controlExpandView = function (btn) {
     // console.log(model.state.currentSubject.expandObject);
     TrackersView.render(model.state.currentSubject.trackers);
     RatersView.render(model.state.currentSubject.raters);
-    ExpandView.render(model.state.currentSubject.expandObject);
-    ExpandView.addHandlerToggle(controlExpandSelector);
-    EntriesView.selectParentElement();
-    EntriesView.render(model.state.currentSubject.expandObject.memory);
+    refreshDataView();
   }
   if (btn === `edit__btn`) {
     openForm(model.state.currentSubject.expandObject);
@@ -115,10 +105,7 @@ const controlFormButton = function (btn) {
     FormView.closeModel();
     TrackersView.render(model.state.currentSubject.trackers);
     RatersView.render(model.state.currentSubject.raters);
-    ExpandView.render(model.state.currentSubject.expandObject);
-    ExpandView.addHandlerToggle(controlExpandSelector);
-    EntriesView.selectParentElement();
-    EntriesView.render(model.state.currentSubject.expandObject.memory);
+    refreshDataView();
   }
   if (btn === `right` && !lastPage) {
     FormView.getFormData(inspectFormData);
@@ -242,6 +229,8 @@ const setParentElements = function () {
 };
 
 const refreshDataView = function () {
+  if (!model.state.currentSubject.expandObject.type) return;
+
   ExpandView.render(model.state.currentSubject.expandObject);
   EntriesView.selectParentElement();
   EntriesView.render(model.state.currentSubject.expandObject.memory);

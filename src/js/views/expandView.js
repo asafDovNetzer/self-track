@@ -41,7 +41,8 @@ class ExpandView extends View {
     if (this._data.type === `counter` || this._data.type === `rater`) return;
 
     if (
-      !this._data.memory[this._date.year][this._date.month][this._date.day].info
+      !this._data?.memory[this._date.year][this._date.month][this._date.day]
+        .info
     )
       return;
 
