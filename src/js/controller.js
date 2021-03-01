@@ -194,10 +194,10 @@ const init = function () {
   // OverviewView.render(`1`, false);
 
   model.runStopwatches();
-  TrackersView.setDate(model.state.now);
-  RatersView.setDate(model.state.now);
-  expandView.setDate(model.state.now);
-  EntriesView.setDate(model.state.now);
+  TrackersView.setDate(model.state.currentSubject.now);
+  RatersView.setDate(model.state.currentSubject.now);
+  expandView.setDate(model.state.currentSubject.now);
+  EntriesView.setDate(model.state.currentSubject.now);
 
   TrackersView.render(model.state.currentSubject.trackers, true);
   TrackersView.addHandlerTrackerBtns(updateOnClick);
