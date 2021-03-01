@@ -185,7 +185,7 @@ const init = function () {
   HomeView.render();
   setParentElements();
 
-  model.setDate();
+  // model.setDate();
   model.memoryCheck();
   model.setExpandObject();
 

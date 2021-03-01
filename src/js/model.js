@@ -476,6 +476,10 @@ export const memoryCheck = function () {
       pauseStopwatch(tracker, timeOfPause);
       console.log(`created last pause`);
     }
+  });
+  setDate();
+
+  state.currentSubject.trackers.forEach((tracker) => {
     // tracker.memory[tracker.memory.length - 1]
     if (tracker.type === `stopwatch`) {
       tracker.memory[state.now.year][state.now.month][state.now.day].info = {
