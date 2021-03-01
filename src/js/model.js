@@ -92,7 +92,9 @@ export const createRaterPrototype = function () {
     notification: `auto`,
   };
 
-  rater.memory[state.now.year][state.now.month][state.now.day].info = {
+  rater.memory[state.currentSubject.now.year][state.currentSubject.now.month][
+    state.currentSubject.now.day
+  ].info = {
     fullDate: getDateObject(new Date(Date.now())),
     entries: [],
     output: {
@@ -116,7 +118,9 @@ export const createCounterPrototype = function () {
     notification: `auto`,
   };
 
-  counter.memory[state.now.year][state.now.month][state.now.day].info = {
+  counter.memory[state.currentSubject.now.year][state.currentSubject.now.month][
+    state.currentSubject.now.day
+  ].info = {
     fullDate: getDateObject(new Date(Date.now())),
     entries: [],
     output: 0,
@@ -142,7 +146,9 @@ export const createStopwatchPrototype = function () {
     notification: `auto`,
   };
 
-  stopwatch.memory[state.now.year][state.now.month][state.now.day].info = {
+  stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info = {
     fullDate: getDateObject(new Date(Date.now())),
     entries: [],
     accum: 0,
@@ -246,12 +252,12 @@ export const raterIdentifier = function (id, btn) {
 };
 
 const handleRater = function (rater, btn) {
-  rater.memory[state.now.year][state.now.month][
-    state.now.day
+  rater.memory[state.currentSubject.now.year][state.currentSubject.now.month][
+    state.currentSubject.now.day
   ].info.output.number = +btn.slice(-1);
 
-  rater.memory[state.now.year][state.now.month][
-    state.now.day
+  rater.memory[state.currentSubject.now.year][state.currentSubject.now.month][
+    state.currentSubject.now.day
   ].info.entries.push({
     at: {
       timestamp: Date.now(),
@@ -277,17 +283,19 @@ const handleCounter = function (counter, btn) {
 };
 
 const updateCount = function (counter, direction) {
-  counter.memory[state.now.year][state.now.month][state.now.day].info.output +=
-    counter.amount * direction;
+  counter.memory[state.currentSubject.now.year][state.currentSubject.now.month][
+    state.currentSubject.now.day
+  ].info.output += counter.amount * direction;
 
-  counter.memory[state.now.year][state.now.month][
-    state.now.day
+  counter.memory[state.currentSubject.now.year][state.currentSubject.now.month][
+    state.currentSubject.now.day
   ].info.entries.push({
     amount: counter.amount,
     direction: direction,
     output:
-      counter.memory[state.now.year][state.now.month][state.now.day].info
-        .output,
+      counter.memory[state.currentSubject.now.year][
+        state.currentSubject.now.month
+      ][state.currentSubject.now.day].info.output,
     at: {
       timestamp: Date.now(),
       dateDetail: getDateObject(new Date(Date.now())),
@@ -314,8 +322,9 @@ const handleStopwatch = function (stopwatch, btn) {
 
 const fixStopwatch = function (stopwatch, direction) {
   const output =
-    stopwatch.memory[state.now.year][state.now.month][state.now.day].info.output
-      .inSeconds;
+    stopwatch.memory[state.currentSubject.now.year][
+      state.currentSubject.now.month
+    ][state.currentSubject.now.day].info.output.inSeconds;
   const units = stopwatch.quickFixButtons.unit === `min` ? 60 : 1;
   let amount = stopwatch.quickFixButtons.amount * units * direction;
 
@@ -323,9 +332,9 @@ const fixStopwatch = function (stopwatch, direction) {
     amount = output * -1;
   }
 
-  stopwatch.memory[state.now.year][state.now.month][
-    state.now.day
-  ].info.entries.push({
+  stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.entries.push({
     fixedAt: {
       timestamp: Date.now(),
       dateDetail: getDateObject(new Date(Date.now())),
@@ -337,47 +346,55 @@ const fixStopwatch = function (stopwatch, direction) {
     },
     output: {
       inSeconds:
-        stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-          .output.inSeconds + amount,
+        stopwatch.memory[state.currentSubject.now.year][
+          state.currentSubject.now.month
+        ][state.currentSubject.now.day].info.output.inSeconds + amount,
       object: secondsToTime(
-        stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-          .output.inSeconds + amount
+        stopwatch.memory[state.currentSubject.now.year][
+          state.currentSubject.now.month
+        ][state.currentSubject.now.day].info.output.inSeconds + amount
       ),
     },
   });
 
-  stopwatch.memory[state.now.year][state.now.month][
-    state.now.day
-  ].info.accum += amount;
-  stopwatch.memory[state.now.year][state.now.month][
-    state.now.day
-  ].info.output.inSeconds += amount;
-  stopwatch.memory[state.now.year][state.now.month][
-    state.now.day
-  ].info.output.object = secondsToTime(
-    stopwatch.memory[state.now.year][state.now.month][state.now.day].info.output
-      .inSeconds
+  stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.accum += amount;
+  stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.output.inSeconds += amount;
+  stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.output.object = secondsToTime(
+    stopwatch.memory[state.currentSubject.now.year][
+      state.currentSubject.now.month
+    ][state.currentSubject.now.day].info.output.inSeconds
   );
 };
 
 const startTicking = function (stopwatch) {
-  const lastLiveEntryI = stopwatch.memory[state.now.year][state.now.month][
-    state.now.day
-  ].info.entries.findIndex((entry) => entry.from && !entry.to);
+  const lastLiveEntryI = stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.entries.findIndex(
+    (entry) => entry.from && !entry.to
+  );
 
   const tick = function () {
     const seconds =
-      stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-        .accum +
+      stopwatch.memory[state.currentSubject.now.year][
+        state.currentSubject.now.month
+      ][state.currentSubject.now.day].info.accum +
       Math.trunc(
         (Date.now() -
-          stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-            .entries[lastLiveEntryI].from.timestamp) /
+          stopwatch.memory[state.currentSubject.now.year][
+            state.currentSubject.now.month
+          ][state.currentSubject.now.day].info.entries[lastLiveEntryI].from
+            .timestamp) /
           1000
       );
-    stopwatch.memory[state.now.year][state.now.month][
-      state.now.day
-    ].info.output = {
+    stopwatch.memory[state.currentSubject.now.year][
+      state.currentSubject.now.month
+    ][state.currentSubject.now.day].info.output = {
       inSeconds: seconds,
       object: secondsToTime(seconds),
     };
@@ -392,19 +409,21 @@ const startTicking = function (stopwatch) {
 const startStopwatch = function (stopwatch) {
   stopwatch.isRunning = true;
 
-  stopwatch.memory[state.now.year][state.now.month][
-    state.now.day
-  ].info.entries.push({
+  stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.entries.push({
     from: {
       timestamp: Date.now(),
       dateDetail: getDateObject(new Date(Date.now())),
       output: {
         inSeconds:
-          stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-            .output.inSeconds,
+          stopwatch.memory[state.currentSubject.now.year][
+            state.currentSubject.now.month
+          ][state.currentSubject.now.day].info.output.inSeconds,
         object: secondsToTime(
-          stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-            .output.inSeconds
+          stopwatch.memory[state.currentSubject.now.year][
+            state.currentSubject.now.month
+          ][state.currentSubject.now.day].info.output.inSeconds
         ),
       },
     },
@@ -417,45 +436,52 @@ const pauseStopwatch = function (stopwatch, timeOfPause = false) {
 
   clearInterval(stopwatch.interval);
 
-  const lastLiveEntryI = stopwatch.memory[state.now.year][state.now.month][
-    state.now.day
-  ].info.entries.findIndex((entry) => entry.from && !entry.to);
+  const lastLiveEntryI = stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.entries.findIndex(
+    (entry) => entry.from && !entry.to
+  );
   const timeOfPauseV = timeOfPause ? timeOfPause : Date.now();
 
-  stopwatch.memory[state.now.year][state.now.month][state.now.day].info.entries[
-    lastLiveEntryI
-  ].to = {
+  stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.entries[lastLiveEntryI].to = {
     timestamp: timeOfPauseV,
     dateDetail: getDateObject(new Date(timeOfPauseV)),
     output: {
       inSeconds:
-        stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-          .output.inSeconds,
+        stopwatch.memory[state.currentSubject.now.year][
+          state.currentSubject.now.month
+        ][state.currentSubject.now.day].info.output.inSeconds,
       object: secondsToTime(
-        stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-          .output.inSeconds
+        stopwatch.memory[state.currentSubject.now.year][
+          state.currentSubject.now.month
+        ][state.currentSubject.now.day].info.output.inSeconds
       ),
     },
   };
 
   const totalTimeInSeconds = Math.trunc(
-    (stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-      .entries[lastLiveEntryI].to.timestamp -
-      stopwatch.memory[state.now.year][state.now.month][state.now.day].info
-        .entries[lastLiveEntryI].from.timestamp) /
+    (stopwatch.memory[state.currentSubject.now.year][
+      state.currentSubject.now.month
+    ][state.currentSubject.now.day].info.entries[lastLiveEntryI].to.timestamp -
+      stopwatch.memory[state.currentSubject.now.year][
+        state.currentSubject.now.month
+      ][state.currentSubject.now.day].info.entries[lastLiveEntryI].from
+        .timestamp) /
       1000
   );
 
-  stopwatch.memory[state.now.year][state.now.month][state.now.day].info.entries[
-    lastLiveEntryI
-  ].totalTime = {
+  stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.entries[lastLiveEntryI].totalTime = {
     inSeconds: totalTimeInSeconds,
     object: secondsToTime(totalTimeInSeconds),
   };
 
-  stopwatch.memory[state.now.year][state.now.month][
-    state.now.day
-  ].info.accum += totalTimeInSeconds;
+  stopwatch.memory[state.currentSubject.now.year][
+    state.currentSubject.now.month
+  ][state.currentSubject.now.day].info.accum += totalTimeInSeconds;
 };
 
 export const memoryCheck = function () {
@@ -482,7 +508,9 @@ export const memoryCheck = function () {
   state.currentSubject.trackers.forEach((tracker) => {
     // tracker.memory[tracker.memory.length - 1]
     if (tracker.type === `stopwatch`) {
-      tracker.memory[state.now.year][state.now.month][state.now.day].info = {
+      tracker.memory[state.currentSubject.now.year][
+        state.currentSubject.now.month
+      ][state.currentSubject.now.day].info = {
         fullDate: getDateObject(new Date(Date.now())),
         entries: [],
         accum: 0,
@@ -494,7 +522,9 @@ export const memoryCheck = function () {
     }
 
     if (tracker.type === `counter`) {
-      tracker.memory[state.now.year][state.now.month][state.now.day].info = {
+      tracker.memory[state.currentSubject.now.year][
+        state.currentSubject.now.month
+      ][state.currentSubject.now.day].info = {
         fullDate: getDateObject(new Date(Date.now())),
         entries: [],
         output: 0,
@@ -503,7 +533,9 @@ export const memoryCheck = function () {
   });
 
   state.currentSubject.raters.forEach((rater) => {
-    rater.memory[state.now.year][state.now.month][state.now.day].info = {
+    rater.memory[state.currentSubject.now.year][state.currentSubject.now.month][
+      state.currentSubject.now.day
+    ].info = {
       fullDate: getDateObject(new Date(Date.now())),
       entries: [],
       output: {
@@ -566,7 +598,7 @@ const createNewSubject = function () {
 
 export const setDate = function () {
   const dateObj = getDateObject(new Date(Date.now()));
-  state.now = {
+  state.currentSubject.now = {
     day: dateObj.day - 1,
     month: dateObj.month - 1,
     year: dateObj.year - 2021,
