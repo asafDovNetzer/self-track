@@ -360,6 +360,8 @@ const startTicking = function (stopwatch) {
       state.currentSubject.now.month
     ][state.currentSubject.now.day].info;
 
+  console.log(memoryItem);
+
   const lastLiveEntryI = memoryItem.entries.findIndex(
     (entry) => entry.from && !entry.to
   );
@@ -413,6 +415,8 @@ const pauseStopwatch = function (stopwatch, timeOfPause = false) {
       state.currentSubject.now.month
     ][state.currentSubject.now.day].info;
 
+  console.log(memoryItem);
+
   const lastLiveEntryI = memoryItem.entries.findIndex(
     (entry) => entry.from && !entry.to
   );
@@ -440,9 +444,9 @@ const pauseStopwatch = function (stopwatch, timeOfPause = false) {
 
   memoryItem.accum += totalTimeInSeconds;
 
-  memoryItem.output.inSeconds += totalTimeInSeconds;
+  // memoryItem.output.inSeconds += totalTimeInSeconds;
 
-  memoryItem.output.object = secondsToTime(memoryItem.output.inSeconds);
+  // memoryItem.output.object = secondsToTime(memoryItem.output.inSeconds);
 };
 
 export const memoryCheck = function () {
