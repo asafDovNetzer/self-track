@@ -571,8 +571,9 @@ export const setDate = function () {
   };
 };
 
-const createCookie = function () {
+export const createCookie = function () {
   state.currentSubject.hasCookie = true;
+  setLocalStorage();
 };
 
 //fixLocalStorage = run once with set local storage at the end and then disable

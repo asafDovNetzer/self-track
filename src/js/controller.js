@@ -177,23 +177,6 @@ const controlExpandSelector = function (value, classList) {
   refreshDataView();
 };
 
-const checkForCookie = function () {
-  model.getLocalStorage();
-  model.enterSubject();
-
-  if (model.state.currentSubject.hasCookie) init();
-  if (!model.state.currentSubject.hasCookie) {
-    signinbtn.addEventListener(`click`, function (e) {
-      if (pin.value === `6546`) {
-        init();
-        model.createCookie();
-      }
-    });
-  }
-};
-
-checkForCookie();
-
 const init = function () {
   console.log(model.state);
 
@@ -233,6 +216,23 @@ const init = function () {
   const interval = setInterval(everySecond, 1000);
 };
 
+const checkForCookie = function () {
+  model.getLocalStorage();
+  model.enterSubject();
+
+  console.log(model.state.currentSubject);
+
+  if (model.state.currentSubject.hasCookie) init();
+  if (!model.state.currentSubject.hasCookie) {
+    signinbtn.addEventListener(`click`, function (e) {
+      if (pin.value === `6546`) {
+        init();
+        model.createCookie();
+      }
+    });
+  }
+};
+
 const setParentElements = function () {
   TrackersView.setParentEl();
   ExpandView.setParentEl();
@@ -249,3 +249,5 @@ const refreshDataView = function () {
   EntriesView.render(model.state.currentSubject.expandObject.memory);
   ExpandView.addHandlerToggle(controlExpandSelector);
 };
+
+checkForCookie();
