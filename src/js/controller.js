@@ -19,6 +19,18 @@ const signinbtn = document.querySelector(`.user`);
 const pin = document.querySelector(`.password`);
 // const signupbtn = document.querySelector(`.btn--signup`);
 
+const checkForCookie = function () {
+  if (model.state.currentSubject.hasCookie) init();
+  if (!model.state.currentSubject.hasCookie) {
+    signinbtn.addEventListener(`click`, function (e) {
+      if (pin.value === `6546`) {
+        init();
+        model.createCookie();
+      }
+    });
+  }
+};
+
 checkForCookie();
 
 const updateOnClick = function (id, btn) {
@@ -218,18 +230,6 @@ const init = function () {
   RatersSelectorView.addHandlerCreateBtns(controlRatersSelector);
 
   const interval = setInterval(everySecond, 1000);
-};
-
-const checkForCookie = function () {
-  if (model.state.currentSubject.hasCookie) init();
-  if (!model.state.currentSubject.hasCookie) {
-    signinbtn.addEventListener(`click`, function (e) {
-      if (pin.value === `6546`) {
-        init();
-        model.createCookie();
-      }
-    });
-  }
 };
 
 const setParentElements = function () {
