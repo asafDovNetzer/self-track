@@ -19,20 +19,6 @@ const signinbtn = document.querySelector(`.user`);
 const pin = document.querySelector(`.password`);
 // const signupbtn = document.querySelector(`.btn--signup`);
 
-const checkForCookie = function () {
-  if (model.state.currentSubject.hasCookie) init();
-  if (!model.state.currentSubject.hasCookie) {
-    signinbtn.addEventListener(`click`, function (e) {
-      if (pin.value === `6546`) {
-        init();
-        model.createCookie();
-      }
-    });
-  }
-};
-
-checkForCookie();
-
 const updateOnClick = function (id, btn) {
   model.trackerIdentifier(id, btn);
   TrackersView.updateUI(model.state.currentSubject.trackers);
@@ -191,10 +177,25 @@ const controlExpandSelector = function (value, classList) {
   refreshDataView();
 };
 
-const init = function () {
+const checkForCookie = function () {
   model.getLocalStorage();
-  console.log(model.state);
   model.enterSubject();
+
+  if (model.state.currentSubject.hasCookie) init();
+  if (!model.state.currentSubject.hasCookie) {
+    signinbtn.addEventListener(`click`, function (e) {
+      if (pin.value === `6546`) {
+        init();
+        model.createCookie();
+      }
+    });
+  }
+};
+
+checkForCookie();
+
+const init = function () {
+  console.log(model.state);
 
   HomeView.render();
   setParentElements();
