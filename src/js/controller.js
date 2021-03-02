@@ -19,6 +19,8 @@ const signinbtn = document.querySelector(`.user`);
 const pin = document.querySelector(`.password`);
 // const signupbtn = document.querySelector(`.btn--signup`);
 
+checkForCookie();
+
 const updateOnClick = function (id, btn) {
   model.trackerIdentifier(id, btn);
   TrackersView.updateUI(model.state.currentSubject.trackers);
@@ -218,10 +220,17 @@ const init = function () {
   const interval = setInterval(everySecond, 1000);
 };
 
-signinbtn.addEventListener(`click`, function (e) {
-  // console.log(pin.value);
-  if (pin.value === `6546`) init();
-});
+const checkForCookie = function () {
+  if (model.state.currentSubject.hasCookie) init();
+  if (!model.state.currentSubject.hasCookie) {
+    signinbtn.addEventListener(`click`, function (e) {
+      if (pin.value === `6546`) {
+        init();
+        model.createCookie();
+      }
+    });
+  }
+};
 
 const setParentElements = function () {
   TrackersView.setParentEl();

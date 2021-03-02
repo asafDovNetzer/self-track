@@ -444,9 +444,9 @@ const pauseStopwatch = function (stopwatch, timeOfPause = false) {
 
   memoryItem.accum += totalTimeInSeconds;
 
-  // memoryItem.output.inSeconds += totalTimeInSeconds;
+  memoryItem.output.inSeconds = memoryItem.accum;
 
-  // memoryItem.output.object = secondsToTime(memoryItem.output.inSeconds);
+  memoryItem.output.object = secondsToTime(memoryItem.output.inSeconds);
 };
 
 export const memoryCheck = function () {
@@ -569,6 +569,10 @@ export const setDate = function () {
     month: dateObj.month - 1,
     year: dateObj.year - 2021,
   };
+};
+
+const createCookie = function () {
+  state.currentSubject.hasCookie = true;
 };
 
 //fixLocalStorage = run once with set local storage at the end and then disable
