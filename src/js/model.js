@@ -442,9 +442,13 @@ const pauseStopwatch = function (stopwatch, timeOfPause = false) {
     object: secondsToTime(totalTimeInSeconds),
   };
 
+  console.log(memoryItem.accum);
   memoryItem.accum += totalTimeInSeconds;
+  console.log(memoryItem.accum);
 
+  console.log(memoryItem.output);
   memoryItem.output.inSeconds = memoryItem.accum;
+  console.log(memoryItem.output);
 
   memoryItem.output.object = secondsToTime(memoryItem.output.inSeconds);
 };
