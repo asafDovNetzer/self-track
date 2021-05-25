@@ -220,17 +220,19 @@ const checkForCookie = function () {
   model.getLocalStorage();
   model.enterSubject();
 
-  console.log(model.state.currentSubject);
+  init();
 
-  if (model.state.currentSubject.hasCookie) init();
-  if (!model.state.currentSubject.hasCookie) {
-    signinbtn.addEventListener(`click`, function (e) {
-      if (pin.value === `6546`) {
-        init();
-        model.createCookie();
-      }
-    });
-  }
+  // console.log(model.state.currentSubject);
+
+  // if (model.state.currentSubject.hasCookie) init();
+  // if (!model.state.currentSubject.hasCookie) {
+  //   signinbtn.addEventListener(`click`, function (e) {
+  //     if (pin.value === `6546`) {
+  //       init();
+  //       model.createCookie();
+  //     }
+  //   });
+  // }
 };
 
 const setParentElements = function () {
