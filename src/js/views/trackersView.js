@@ -45,6 +45,10 @@ class TrackersView extends View {
   }
 
   _generateMarkup() {
+    // if (!this._data) {
+    //   console.log(`no data`);
+    //   return this._generateEmptyMarkup();
+    // }
     return this._data
       .map((tracker) => {
         if (tracker.type === `counter`) {
@@ -56,6 +60,14 @@ class TrackersView extends View {
       })
       .join(``);
   }
+
+  // _generateEmptyMarkup() {
+  //   return `
+  //   <div>
+  //   <h1>Create your first stopwatch or counter to begin</h1>
+  //   </div>
+  //   `
+  // }
 
   _generateCounterMarkup(tracker) {
     const selectionMarker = tracker.isSelected ? ` selected` : ``;

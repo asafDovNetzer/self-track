@@ -4,9 +4,11 @@ import icons from "url:../../bootstrap-icons/bootstrap-icons.svg";
 export default class View {
   render(data, strach = false) {
     if (!data) return;
+    console.log(data);
+
     this._data = data;
 
-    this._clear();
+    if (data.length !== 0) this._clear();
 
     const markup = this._generateMarkup();
 
